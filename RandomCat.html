@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+  body{
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<h1>3초마다 새로운 고양이 사진이 나옵니다!</h1>
+
+  <img id="catIMG">
+  <script>
+      setInterval(loadCatImage, 3000)
+      function loadCatImage(){
+        $.ajax({
+        type: "GET",
+        url:"https://api.thecatapi.com/v1/images/search",
+        data:{},
+        success: function(response){
+          const catURL = response[0]['url']
+          // const width = response[0]['width']
+          // const height = response[0]['height']
+        //   document.getElementById("catIMG").src = catURL
+          $("#catIMG").attr("src", catURL)
+          // $("#catIMG").attr("width", width)
+          // $("#catIMG").attr("height", height)
+          
+        }
+      })
+      }
+      
+
+  </script>
+</body>
+</html>
